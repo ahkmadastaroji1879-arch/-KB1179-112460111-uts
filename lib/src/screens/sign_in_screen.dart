@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uts/src/config/app_config.dart';
+import 'package:uts/src/screens/home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   static const String routeName = '/signin';
@@ -34,7 +35,19 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Icon(Icons.lock_outline, size: 64, color: colors.primary),
+                // Logo dari assets, fallback ke ikon jika file belum ada
+                Center(
+                  child: Image.asset(
+                    'assets/signin_logo.png',
+                    width: 96,
+                    height: 96,
+                    errorBuilder: (_, __, ___) => Icon(
+                      Icons.lock_outline,
+                      size: 64,
+                      color: colors.primary,
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 16),
                 Text('Selamat Datang',
                     textAlign: TextAlign.center,
@@ -75,7 +88,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 8),
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final email = emailController.text.trim();
+                    final password = passwordController.text;
+                    final valid = email.contains('@') && password.length >= 6;
+                    if (!valid) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Email/password tidak valid (min 6 karakter)')),
+                      );
+                      return;
+                    }
+                    Navigator.of(context).pushReplacementNamed(
+                      HomeScreen.routeName,
+                      arguments: email,
+                    );
+                  },
                   child: const Text('Login'),
                 ),
                 const SizedBox(height: 12),

@@ -26,21 +26,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final pages = <_OnboardData>[
       _OnboardData(
         title: 'Welcome',
-        subtitle:
-            'Forgot to bring your wallet when you are shopping?',
-        icon: Icons.chat_bubble_outline,
+        subtitle: 'Forgot to bring your wallet when you are shopping?',
+        asset: 'assets/onboarding1.png',
+        fallbackIcon: Icons.chat_bubble_outline,
       ),
       _OnboardData(
         title: 'Welcome',
-        subtitle:
-            "Don't worry! we got you cover. Use wallet instead of cash!",
-        icon: Icons.verified_outlined,
+        subtitle: "Don't worry! we got you cover. Use wallet instead of cash!",
+        asset: 'assets/onboarding2.png',
+        fallbackIcon: Icons.verified_outlined,
       ),
       _OnboardData(
         title: 'Welcome',
-        subtitle:
-            'Let’s try Wallet now! And get the best solution.',
-        icon: Icons.notifications_outlined,
+        subtitle: 'Let’s try Wallet now! And get the best solution.',
+        asset: 'assets/onboarding3.png',
+        fallbackIcon: Icons.notifications_outlined,
       ),
     ];
 
@@ -100,11 +100,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 class _OnboardData {
   final String title;
   final String subtitle;
-  final IconData icon;
+  final String asset; // image asset path
+  final IconData fallbackIcon;
   const _OnboardData({
     required this.title,
     required this.subtitle,
-    required this.icon,
+    required this.asset,
+    required this.fallbackIcon,
   });
 }
 
@@ -124,7 +126,15 @@ class _OnboardPage extends StatelessWidget {
           CircleAvatar(
             radius: 92,
             backgroundColor: colors.primaryContainer,
-            child: Icon(data.icon, color: colors.primary, size: 64),
+            child: ClipOval(
+              child: Image.asset(
+                data.asset,
+                width: 128,
+                height: 128,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Icon(data.fallbackIcon, color: colors.primary, size: 64),
+              ),
+            ),
           ),
           const SizedBox(height: 32),
           Text('Welcome', style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w700)),
