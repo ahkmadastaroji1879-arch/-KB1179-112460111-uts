@@ -23,6 +23,9 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Create platforms (if missing)
+        run: flutter create .
+
       - name: Flutter pub get
         run: flutter pub get
 
