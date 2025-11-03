@@ -1,66 +1,66 @@
-# Ujian Flutter — UI + Deploy + Git
+NAMA : AKHMAD ASTAROJI
+NIM  : 1124160111
+📱 Aplikasi Flutter UTS
 
-A Flutter app implementing:
-- Material 3 theme using `ColorScheme.fromSeed` seeded by last digit of NIM (fixed mapping table).
-- Onboarding splash with 3 pages and pager dots.
-- Sign In screen matching the provided mock.
-- NIM is displayed in the UI for verification.
+Proyek ini merupakan aplikasi Flutter yang dibuat sebagai tugas UTS untuk mata kuliah/pelajaran pemrograman mobile. Aplikasi ini dikembangkan menggunakan Flutter SDK dan dapat dijalankan di berbagai platform seperti Android, iOS, dan Web.
 
-## Setup
+🚀 Cara Menjalankan Aplikasi Flutter
+1️⃣ Persiapan Awal
 
-1) Ensure Flutter SDK (3.22+ recommended) is installed.
-2) From this folder run:
-```bash
+Pastikan sudah menginstal:
+
+Flutter SDK
+
+Android Studio atau Visual Studio Code
+
+Emulator Android atau perangkat fisik yang terhubung
+
+Periksa apakah Flutter sudah siap digunakan dengan perintah:
+
+flutter doctor
+
+2️⃣ Clone Repository
+
+Clone repository ini ke komputer lokal kamu:
+
+git clone https://github.com/ahkmadastaroji1879-arch/-KB1179-112460111-uts.git
+
+
+Masuk ke folder proyek:
+
+cd -KB1179-112460111-uts
+
+3️⃣ Install Dependency
+
+Jalankan perintah berikut untuk mengunduh semua paket yang dibutuhkan:
+
 flutter pub get
+
+4️⃣ Jalankan Aplikasi
+
+Untuk menjalankan aplikasi di emulator atau perangkat fisik gunakan:
+
 flutter run
-```
 
-If you created the repo without platform folders, you can add them with:
-```bash
-flutter create .
-```
 
-## Configure NIM
-Edit `lib/src/config/app_config.dart`:
-```dart
-const String appNim = '1234556';
-```
-The theme seed color updates automatically from the last digit:
-- 0 → `Colors.indigo`
-- 1 → `Colors.teal`
-- 2 → `Colors.deepOrange`
-- 3 → `Colors.blueGrey`
-- 4 → `Colors.amber`
-- 5 → `Colors.pink`
-- 6 → `Colors.cyan`
-- 7 → `Colors.deepPurple`
-- 8 → `Colors.green`
-- 9 → `Colors.red`
+Jika ingin menjalankan di browser (web):
 
-## Screens
-- Onboarding (3 slides) → Continue/Get Started → Sign In
-- Sign In page with email, password visibility toggle, forgot password, Google button, and sign-up link.
+flutter run -d chrome
 
-## Folder Structure
-- `lib/main.dart` — App entry, Material 3 theme
-- `lib/src/theme/seed_theme.dart` — NIM → seed color mapping
-- `lib/src/routes/app_router.dart` — Routes
-- `lib/src/screens/` — Onboarding and Sign In
-- `lib/src/config/app_config.dart` — NIM value
+5️⃣ Build APK (Opsional)
 
-## Notes
-- Assets folder is included for future use; UI uses Material icons and colors to match the mock.
+Untuk membuat file APK versi rilis gunakan:
 
-## Build APK Tanpa Install Flutter (GitHub Actions)
-Jika kamu pemula dan ingin langsung dapat file APK jadi:
+flutter build apk --release
 
-1. Buat repository GitHub baru (public/private bebas).
-2. Upload seluruh isi folder proyek ini ke repo tersebut (pastikan struktur tetap sama).
-3. Setelah push ke branch `main`/`master`, buka tab "Actions" di repo GitHub-mu.
-4. Workflow bernama "Build Android APK" akan berjalan otomatis. Tunggu hingga statusnya "success".
-5. Masuk ke job terakhir → bagian "Artifacts" → download `app-release-apk`.
-6. Di dalamnya ada `app-release.apk`. Pindahkan ke HP dan install.
 
-Catatan:
-- Jika mengganti NIM di `lib/src/config/app_config.dart`, commit & push lagi agar workflow membangun APK terbaru dengan tema warna yang sesuai.
+Hasil build akan berada di folder:
 
+build/app/outputs/flutter-apk/app-release.apk
+
+🧰 Catatan Tambahan
+
+Jika terjadi error saat menjalankan proyek, coba bersihkan cache terlebih dahulu dengan perintah:
+
+flutter clean
+flutter pub get
